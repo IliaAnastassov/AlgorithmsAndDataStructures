@@ -4,39 +4,54 @@ using System.Collections.Generic;
 namespace LinkedList
 {
     /// <summary>
-    /// A linked list collection
+    /// A linked list collection.
     /// </summary>
     class LinkedList<T> : ICollection<T>
     {
         /// <summary>
-        /// The first node in the linked list (null if empty)
+        /// The first node in the linked list or null if empty.
         /// </summary>
-        public LinkedListNode<T> Head { get; set; }
+        public LinkedListNode<T> Head { get; private set; }
 
         /// <summary>
-        /// The last node in the linked list (null if empty)
+        /// The last node in the linked list or null if empty.
         /// </summary>
-        public LinkedListNode<T> Tail { get; set; }
+        public LinkedListNode<T> Tail { get; private set; }
 
         /// <summary>
-        /// The number of nodes in the linked list
+        /// The number of items currently in the linked list.
         /// </summary>
         public int Count { get; private set; }
 
-        public bool IsReadOnly => throw new System.NotImplementedException();
+        /// <summary>
+        /// Gets a value indicating whether the linked list is read-only.
+        /// </summary>
+        public bool IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         /// <summary>
-        /// Adds a node to he front of the linked list
+        /// Adds the specified value to the start of the linked list.
+        /// </summary>
+        /// <param name="value"></param>
+        public void AddFirst(T value)
+        {
+            AddFirst(new LinkedListNode<T>(value));
+        }
+
+        /// <summary>
+        /// Adds the node to the start of the linked list.
         /// </summary>
         /// <param name="node"></param>
         public void AddFirst(LinkedListNode<T> node)
         {
             LinkedListNode<T> temp = Head;
-
             Head = node;
-
             Head.Next = temp;
-
             Count++;
 
             if (Count == 1)
@@ -46,7 +61,16 @@ namespace LinkedList
         }
 
         /// <summary>
-        /// Adds a node to the end of the linked list
+        /// Adds the specified value to the end of the linked list.
+        /// </summary>
+        /// <param name="value"></param>
+        public void AddLast(T value)
+        {
+            AddLast(new LinkedListNode<T>(value));
+        }
+
+        /// <summary>
+        /// Adds the node to the end of the linked list.
         /// </summary>
         /// <param name="node"></param>
         public void AddLast(LinkedListNode<T> node)
@@ -65,7 +89,24 @@ namespace LinkedList
         }
 
         /// <summary>
-        /// Removes the last node in the linked list
+        /// Removes the first node of the linked list.
+        /// </summary>
+        public void RemoveFirst()
+        {
+            if (Count != 0)
+            {
+                Head = Head.Next;
+                Count--;
+
+                if (Count == 0)
+                {
+                    Tail = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Removes the last node in the linked list.
         /// </summary>
         public void RemoveLast()
         {
@@ -92,27 +133,10 @@ namespace LinkedList
             }
         }
 
-        /// <summary>
-        /// Removes the first node of the linked list
-        /// </summary>
-        public void RemoveFirst()
-        {
-            if (Count != 0)
-            {
-                Head = Head.Next;
-                Count--;
-
-                if (Count == 0)
-                {
-                    Tail = null;
-                }
-            }
-        }
-
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             LinkedListNode<T> current = Head;
-            while (current != null)
+            while (current.Next != null)
             {
                 yield return current.Value;
                 current = current.Next;
@@ -121,7 +145,7 @@ namespace LinkedList
 
         public void Add(T item)
         {
-            throw new System.NotImplementedException();
+            AddFirst(item);
         }
 
         public void Clear()
@@ -129,9 +153,25 @@ namespace LinkedList
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Determines whether the linked list contains a specific value.
+        /// </summary>
+        /// <param name="item">The object to locate in the linked list</param>
+        /// <returns>true if item is found in the linked list otherwise, false.</returns>
         public bool Contains(T item)
         {
-            throw new System.NotImplementedException();
+            LinkedListNode<T> current = Head;
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    return true;
+                }
+
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
