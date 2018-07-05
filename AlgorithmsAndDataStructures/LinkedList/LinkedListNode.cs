@@ -1,6 +1,9 @@
-﻿namespace LinkedList
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace LinkedList
 {
-    class LinkedListNode<T>
+    class LinkedListNode<T> : IEnumerable<T>
     {
         public T Value { get; set; }
 
@@ -14,7 +17,7 @@
 
         public void AddFirst(LinkedListNode<T> node)
         {
-            var temp = Head;
+            LinkedListNode<T> temp = Head;
 
             Head = node;
 
@@ -54,7 +57,7 @@
                 }
                 else
                 {
-                    var current = Head;
+                    LinkedListNode<T> current = Head;
                     while (current.Next != Tail)
                     {
                         current = current.Next;
@@ -80,6 +83,21 @@
                     Tail = null;
                 }
             }
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            LinkedListNode<T> current = Head;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
