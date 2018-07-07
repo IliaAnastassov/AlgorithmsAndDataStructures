@@ -49,7 +49,7 @@ namespace LinkedList
         /// <param name="node"></param>
         public void AddFirst(LinkedListNode<T> node)
         {
-            LinkedListNode<T> temp = Head;
+            var temp = Head;
             Head = node;
             Head.Next = temp;
             Count++;
@@ -119,7 +119,7 @@ namespace LinkedList
                 }
                 else
                 {
-                    LinkedListNode<T> current = Head;
+                    var current = Head;
                     while (current.Next != Tail)
                     {
                         current = current.Next;
@@ -135,7 +135,7 @@ namespace LinkedList
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            LinkedListNode<T> current = Head;
+            var current = Head;
             while (current.Next != null)
             {
                 yield return current.Value;
