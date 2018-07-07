@@ -34,6 +34,8 @@ namespace LinkedList
             }
         }
 
+        #region Add
+
         /// <summary>
         /// Adds the specified value to the start of the linked list.
         /// </summary>
@@ -75,6 +77,11 @@ namespace LinkedList
         /// <param name="node"></param>
         public void AddLast(LinkedListNode<T> node)
         {
+            if (node.Next != null)
+            {
+                node = new LinkedListNode<T>(node.Value);
+            }
+
             if (Count == 0)
             {
                 Head = node;
@@ -87,6 +94,9 @@ namespace LinkedList
             Tail = node;
             Count++;
         }
+        #endregion
+
+        #region Remove
 
         /// <summary>
         /// Removes the first node of the linked list.
@@ -132,25 +142,17 @@ namespace LinkedList
                 Count--;
             }
         }
+        #endregion
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            var current = Head;
-            while (current.Next != null)
-            {
-                yield return current.Value;
-                current = current.Next;
-            }
-        }
+        #region ICollection
 
+        /// <summary>
+        /// Adds an item to the linked list.
+        /// </summary>
+        /// <param name="item">The object to add to the linked list.</param>
         public void Add(T item)
         {
             AddFirst(item);
-        }
-
-        public void Clear()
-        {
-            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -174,19 +176,95 @@ namespace LinkedList
             return false;
         }
 
+        /// <summary>
+        /// Copies the elements of the linked list to an System.Array, starting at a particular System.Array index.
+        /// </summary>
+        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied
+        /// from the linked list. The System.Array must have zero-based indexing.</param>
+        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new System.NotImplementedException();
+            var current = Head;
+            while (current != null)
+            {
+                array[arrayIndex++] = current.Value;
+                current = current.Next;
+            }
         }
 
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the linked list.
+        /// </summary>
+        /// <param name="item">The object to remove from the linked list.</param>
+        /// <returns>true if item was successfully removed from the linked list; otherwise, false.
+        /// This method also returns false if item is not found in the original linked list.</returns>
         public bool Remove(T item)
         {
-            throw new System.NotImplementedException();
+            LinkedListNode<T> previous = null;
+            LinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    if (previous == null)
+                    {
+                        RemoveFirst();
+                    }
+                    else
+                    {
+                        previous.Next = current.Next;
+
+                        if (current.Next == null)
+                        {
+                            Tail = previous;
+                        }
+
+                        Count--;
+                    }
+
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            }
+
+            return false;
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the linked list.
+        /// </summary>
+        /// <returns>An enumerator that can be used to iterate through the linked list.</returns>
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            var current = Head;
+            while (current.Next != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the linked list.
+        /// </summary>
+        /// <returns>An enumerator that can be used to iterate through the linked list.</returns>
         public IEnumerator GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return ((IEnumerable<T>)this).GetEnumerator();
         }
+
+        /// <summary>
+        /// Removes all items from the linked list.
+        /// </summary>
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
+            Count = 0;
+        }
+        #endregion
     }
 }
