@@ -7,17 +7,17 @@ namespace DoublyLinkedList
     /// A linked list collection.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class DoublyLinkedList<T> : ICollection<T>
+    class LinkedList<T> : ICollection<T>
     {
         /// <summary>
         /// The first node in the linked list or null if empty.
         /// </summary>
-        public DoublyLinkedListNode<T> Head { get; private set; }
+        public LinkedListNode<T> Head { get; private set; }
 
         /// <summary>
         /// The last node in the linked list or null if empty.
         /// </summary>
-        public DoublyLinkedListNode<T> Tail { get; private set; }
+        public LinkedListNode<T> Tail { get; private set; }
 
         /// <summary>
         /// The number of items currently in the linked list.
@@ -54,14 +54,14 @@ namespace DoublyLinkedList
         /// <param name="value"></param>
         public void AddFirst(T value)
         {
-            AddFirst(new DoublyLinkedListNode<T>(value));
+            AddFirst(new LinkedListNode<T>(value));
         }
 
         /// <summary>
         /// Adds the node to the start of the linked list.
         /// </summary>
         /// <param name="node"></param>
-        public void AddFirst(DoublyLinkedListNode<T> node)
+        public void AddFirst(LinkedListNode<T> node)
         {
             var temp = Head;
             Head = node;
@@ -85,18 +85,18 @@ namespace DoublyLinkedList
         /// <param name="value"></param>
         public void AddLast(T value)
         {
-            AddLast(new DoublyLinkedListNode<T>(value));
+            AddLast(new LinkedListNode<T>(value));
         }
 
         /// <summary>
         /// Adds the node to the end of the linked list.
         /// </summary>
         /// <param name="node"></param>
-        public void AddLast(DoublyLinkedListNode<T> node)
+        public void AddLast(LinkedListNode<T> node)
         {
             if (node.Next != null)
             {
-                node = new DoublyLinkedListNode<T>(node.Value);
+                node = new LinkedListNode<T>(node.Value);
             }
 
             if (IsEmpty)
@@ -178,7 +178,7 @@ namespace DoublyLinkedList
         /// <returns>true if item is found in the linked list otherwise, false.</returns>
         public bool Contains(T item)
         {
-            DoublyLinkedListNode<T> current = Head;
+            LinkedListNode<T> current = Head;
             while (current != null)
             {
                 if (current.Value.Equals(item))
@@ -216,8 +216,8 @@ namespace DoublyLinkedList
         /// This method also returns false if item is not found in the original linked list.</returns>
         public bool Remove(T item)
         {
-            DoublyLinkedListNode<T> previous = null;
-            DoublyLinkedListNode<T> current = Head;
+            LinkedListNode<T> previous = null;
+            LinkedListNode<T> current = Head;
 
             while (current != null)
             {

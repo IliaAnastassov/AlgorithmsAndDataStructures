@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublyLinkedList", "DoublyL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglyLinkedList", "SinglyLinkedList\SinglyLinkedList.csproj", "{DD152F36-E75A-4A9A-8A9F-F61B4C8ABB3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedList", "LinkedList", "{EDCF5804-7934-4EB6-9027-E9CACF3F9AC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03C98194-7CF3-4065-AF26-59BA22574869} = {EDCF5804-7934-4EB6-9027-E9CACF3F9AC6}
+		{DD152F36-E75A-4A9A-8A9F-F61B4C8ABB3D} = {EDCF5804-7934-4EB6-9027-E9CACF3F9AC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66D5F877-35DE-4F49-A824-4596B645C11E}

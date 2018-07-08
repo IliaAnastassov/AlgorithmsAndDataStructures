@@ -1,4 +1,4 @@
-﻿namespace LinkedList
+﻿namespace SinglyLinkedList
 {
     /// <summary>
     /// A node in the linked list.

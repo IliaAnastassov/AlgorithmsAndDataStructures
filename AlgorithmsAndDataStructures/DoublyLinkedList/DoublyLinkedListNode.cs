@@ -4,13 +4,13 @@
     /// A node in the linked list.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class DoublyLinkedListNode<T>
+    class LinkedListNode<T>
     {
         /// <summary>
         /// Constructs a new node with the specified value.
         /// </summary>
         /// <param name="value"></param>
-        public DoublyLinkedListNode(T value)
+        public LinkedListNode(T value)
         {
             Value = value;
         }
@@ -23,11 +23,11 @@
         /// <summary>
         /// The previous node in the linked list or null if last node.
         /// </summary>
-        public DoublyLinkedListNode<T> Previous { get; set; }
+        public LinkedListNode<T> Previous { get; set; }
 
         /// <summary>
         /// The next node in the linked list or null if last node.
         /// </summary>
-        public DoublyLinkedListNode<T> Next { get; set; }
+        public LinkedListNode<T> Next { get; set; }
     }
 }
