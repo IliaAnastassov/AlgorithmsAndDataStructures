@@ -24,7 +24,7 @@ namespace SinglyLinkedList
         public int Count { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating whether the linked list is empty
+        /// Gets a value indicating whether the linked list is empty.
         /// </summary>
         public bool IsEmpty
         {
@@ -50,7 +50,7 @@ namespace SinglyLinkedList
         /// <summary>
         /// Adds the specified value to the start of the linked list.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">The value to add.</param>
         public void AddFirst(T value)
         {
             AddFirst(new LinkedListNode<T>(value));
@@ -59,7 +59,7 @@ namespace SinglyLinkedList
         /// <summary>
         /// Adds the node to the start of the linked list.
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The node to add.</param>
         public void AddFirst(LinkedListNode<T> node)
         {
             var temp = Head;
@@ -77,7 +77,7 @@ namespace SinglyLinkedList
         /// <summary>
         /// Adds the specified value to the end of the linked list.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">The value to add.</param>
         public void AddLast(T value)
         {
             AddLast(new LinkedListNode<T>(value));
@@ -86,7 +86,7 @@ namespace SinglyLinkedList
         /// <summary>
         /// Adds the node to the end of the linked list.
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The node to add.</param>
         public void AddLast(LinkedListNode<T> node)
         {
             if (node.Next != null)
