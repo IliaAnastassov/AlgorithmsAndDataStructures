@@ -24,6 +24,17 @@ namespace LinkedList
         public int Count { get; private set; }
 
         /// <summary>
+        /// Gets a value indicating whether the linked list is empty
+        /// </summary>
+        public bool IsEmpty
+        {
+            get
+            {
+                return Count == 0;
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether the linked list is read-only.
         /// </summary>
         public bool IsReadOnly
@@ -54,12 +65,13 @@ namespace LinkedList
             var temp = Head;
             Head = node;
             Head.Next = temp;
-            Count++;
 
-            if (Count == 1)
+            if (IsEmpty)
             {
                 Tail = Head;
             }
+
+            Count++;
         }
 
         /// <summary>
@@ -82,7 +94,7 @@ namespace LinkedList
                 node = new LinkedListNode<T>(node.Value);
             }
 
-            if (Count == 0)
+            if (IsEmpty)
             {
                 Head = node;
             }
@@ -103,7 +115,7 @@ namespace LinkedList
         /// </summary>
         public void RemoveFirst()
         {
-            if (Count != 0)
+            if (!IsEmpty)
             {
                 Head = Head.Next;
                 Count--;
@@ -120,7 +132,7 @@ namespace LinkedList
         /// </summary>
         public void RemoveLast()
         {
-            if (Count != 0)
+            if (!IsEmpty)
             {
                 if (Count == 1)
                 {
