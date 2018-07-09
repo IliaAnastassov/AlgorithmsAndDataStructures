@@ -4,7 +4,7 @@
     /// A node in the linked list.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class LinkedListNode<T>
+    public class LinkedListNode<T>
     {
         /// <summary>
         /// Constructs a new node with the specified value.

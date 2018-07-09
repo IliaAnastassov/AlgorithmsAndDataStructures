@@ -7,7 +7,7 @@ namespace DoublyLinkedList
     /// A linked list collection.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class LinkedList<T> : ICollection<T>
+    public class LinkedList<T> : ICollection<T>
     {
         /// <summary>
         /// The first node in the linked list or null if empty.
