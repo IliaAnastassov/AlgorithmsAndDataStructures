@@ -45,8 +45,6 @@ namespace SinglyLinkedList
             }
         }
 
-        #region Add
-
         /// <summary>
         /// Adds the specified value to the start of the linked list.
         /// </summary>
@@ -106,9 +104,6 @@ namespace SinglyLinkedList
             Tail = node;
             Count++;
         }
-        #endregion
-
-        #region Remove
 
         /// <summary>
         /// Removes the first node of the linked list.
@@ -154,9 +149,6 @@ namespace SinglyLinkedList
                 Count--;
             }
         }
-        #endregion
-
-        #region ICollection
 
         /// <summary>
         /// Adds an item to the linked list.
@@ -277,6 +269,5 @@ namespace SinglyLinkedList
             Tail = null;
             Count = 0;
         }
-        #endregion
     }
 }
