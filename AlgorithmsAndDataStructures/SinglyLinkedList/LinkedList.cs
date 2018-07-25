@@ -11,12 +11,12 @@ namespace SinglyLinkedList
         /// <summary>
         /// The first node in the linked list or null if empty.
         /// </summary>
-        public LinkedListNode<T> Head { get; private set; }
+        public LinkedListNode<T> First { get; private set; }
 
         /// <summary>
         /// The last node in the linked list or null if empty.
         /// </summary>
-        public LinkedListNode<T> Tail { get; private set; }
+        public LinkedListNode<T> Last { get; private set; }
 
         /// <summary>
         /// The number of items currently in the linked list.
@@ -60,13 +60,13 @@ namespace SinglyLinkedList
         /// <param name="node">The node to add.</param>
         public void AddFirst(LinkedListNode<T> node)
         {
-            var temp = Head;
-            Head = node;
-            Head.Next = temp;
+            var temp = First;
+            First = node;
+            First.Next = temp;
 
             if (IsEmpty)
             {
-                Tail = Head;
+                Last = First;
             }
 
             Count++;
@@ -94,14 +94,14 @@ namespace SinglyLinkedList
 
             if (IsEmpty)
             {
-                Head = node;
+                First = node;
             }
             else
             {
-                Tail.Next = node;
+                Last.Next = node;
             }
 
-            Tail = node;
+            Last = node;
             Count++;
         }
 
@@ -112,12 +112,12 @@ namespace SinglyLinkedList
         {
             if (!IsEmpty)
             {
-                Head = Head.Next;
+                First = First.Next;
                 Count--;
 
                 if (Count == 0)
                 {
-                    Tail = null;
+                    Last = null;
                 }
             }
         }
@@ -131,19 +131,19 @@ namespace SinglyLinkedList
             {
                 if (Count == 1)
                 {
-                    Head = null;
-                    Tail = null;
+                    First = null;
+                    Last = null;
                 }
                 else
                 {
-                    var current = Head;
-                    while (current.Next != Tail)
+                    var current = First;
+                    while (current.Next != Last)
                     {
                         current = current.Next;
                     }
 
                     current.Next = null;
-                    Tail = current;
+                    Last = current;
                 }
 
                 Count--;
@@ -166,7 +166,7 @@ namespace SinglyLinkedList
         /// <returns>true if item is found in the linked list otherwise, false.</returns>
         public bool Contains(T item)
         {
-            LinkedListNode<T> current = Head;
+            LinkedListNode<T> current = First;
             while (current != null)
             {
                 if (current.Value.Equals(item))
@@ -188,7 +188,7 @@ namespace SinglyLinkedList
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
-            var current = Head;
+            var current = First;
             while (current != null)
             {
                 array[arrayIndex++] = current.Value;
@@ -205,7 +205,7 @@ namespace SinglyLinkedList
         public bool Remove(T item)
         {
             LinkedListNode<T> previous = null;
-            LinkedListNode<T> current = Head;
+            LinkedListNode<T> current = First;
 
             while (current != null)
             {
@@ -221,7 +221,7 @@ namespace SinglyLinkedList
 
                         if (current.Next == null)
                         {
-                            Tail = previous;
+                            Last = previous;
                         }
 
                         Count--;
@@ -243,7 +243,7 @@ namespace SinglyLinkedList
         /// <returns>An enumerator that can be used to iterate through the linked list.</returns>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            var current = Head;
+            var current = First;
             while (current.Next != null)
             {
                 yield return current.Value;
@@ -265,8 +265,8 @@ namespace SinglyLinkedList
         /// </summary>
         public void Clear()
         {
-            Head = null;
-            Tail = null;
+            First = null;
+            Last = null;
             Count = 0;
         }
     }

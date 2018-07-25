@@ -15,7 +15,7 @@ namespace LinkedList.Tests
             sut.AddLast(42);
             sut.AddLast(47);
 
-            Assert.That(sut.Head.Value, Is.EqualTo(66));
+            Assert.That(sut.First.Value, Is.EqualTo(66));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace LinkedList.Tests
             sut.AddLast(42);
             sut.AddLast(47);
 
-            Assert.That(sut.Tail.Value, Is.EqualTo(47));
+            Assert.That(sut.Last.Value, Is.EqualTo(47));
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace LinkedList.Tests
 
             sut.RemoveFirst();
 
-            Assert.That(sut.Head.Value, Is.EqualTo(2));
+            Assert.That(sut.First.Value, Is.EqualTo(2));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace LinkedList.Tests
 
             sut.RemoveLast();
 
-            Assert.That(sut.Tail.Value, Is.EqualTo(2));
+            Assert.That(sut.Last.Value, Is.EqualTo(2));
         }
     }
 }
