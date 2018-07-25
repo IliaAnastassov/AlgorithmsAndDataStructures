@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SinglyLinkedList;
 
 namespace LinkedList.Tests
 {
@@ -8,7 +9,7 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldAddFirst()
         {
-            var sut = new SinglyLinkedList.LinkedList<int>();
+            var sut = new LinkedList<int>();
 
             sut.AddFirst(66);
             sut.AddLast(42);
@@ -20,13 +21,39 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldAddLast()
         {
-            var sut = new SinglyLinkedList.LinkedList<int>();
+            var sut = new LinkedList<int>();
 
             sut.AddFirst(66);
-            sut.AddFirst(42);
+            sut.AddLast(42);
             sut.AddLast(47);
 
             Assert.That(sut.Tail.Value, Is.EqualTo(47));
+        }
+
+        [Test]
+        public void ShouldRemoveFirst()
+        {
+            var sut = new LinkedList<int>
+            {
+                3, 2, 1
+            };
+
+            sut.RemoveFirst();
+
+            Assert.That(sut.Head.Value, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ShouldRemoveLast()
+        {
+            var sut = new LinkedList<int>
+            {
+                3, 2, 1
+            };
+
+            sut.RemoveLast();
+
+            Assert.That(sut.Tail.Value, Is.EqualTo(2));
         }
     }
 }
