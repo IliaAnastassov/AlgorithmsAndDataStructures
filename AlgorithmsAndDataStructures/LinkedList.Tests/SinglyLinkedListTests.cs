@@ -55,5 +55,29 @@ namespace LinkedList.Tests
 
             Assert.That(sut.Last.Value, Is.EqualTo(2));
         }
+
+        [Test]
+        public void ShouldGetCount()
+        {
+            var sut = new LinkedList<int>
+            {
+                3, 2, 1
+            };
+            
+            Assert.That(sut.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldClear()
+        {
+            var sut = new LinkedList<int>
+            {
+                3, 2, 1
+            };
+
+            sut.Clear();
+
+            Assert.That(sut.Count, Is.EqualTo(0));
+        }
     }
 }
