@@ -63,7 +63,7 @@ namespace LinkedList.Tests
             {
                 3, 2, 1
             };
-            
+
             Assert.That(sut.Count, Is.EqualTo(3));
         }
 
@@ -77,6 +77,27 @@ namespace LinkedList.Tests
 
             sut.Clear();
 
+            Assert.That(sut.Count, Is.EqualTo(0));
+            Assert.That(sut.IsEmpty, Is.True);
+        }
+
+        [Test]
+        public void ShouldNotBeEmpty()
+        {
+            var sut = new LinkedList<int>();
+
+            sut.AddFirst(66);
+
+            Assert.That(sut.IsEmpty, Is.False);
+            Assert.That(sut.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ShouldBeEmpty()
+        {
+            var sut = new LinkedList<int>();
+
+            Assert.That(sut.IsEmpty, Is.True);
             Assert.That(sut.Count, Is.EqualTo(0));
         }
     }
