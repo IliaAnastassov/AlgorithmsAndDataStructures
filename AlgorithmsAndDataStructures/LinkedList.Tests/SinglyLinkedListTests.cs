@@ -89,7 +89,7 @@ namespace LinkedList.Tests
             sut.AddFirst(66);
 
             Assert.That(sut.IsEmpty, Is.False);
-            Assert.That(sut.Count, Is.EqualTo(1));
+            Assert.That(sut.Count, Is.Not.EqualTo(0));
         }
 
         [Test]
