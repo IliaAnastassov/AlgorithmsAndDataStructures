@@ -4,16 +4,14 @@ using SinglyLinkedList;
 namespace LinkedList.Tests
 {
     [TestFixture]
-    class SinglyLinkedListTests
+    public class SinglyLinkedListTests
     {
+        private LinkedList<int> sut;
+
         [Test]
         public void ShouldAddFirst()
         {
-            var sut = new LinkedList<int>();
-
             sut.AddFirst(66);
-            sut.AddLast(42);
-            sut.AddLast(47);
 
             Assert.That(sut.First.Value, Is.EqualTo(66));
         }
@@ -21,10 +19,6 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldAddLast()
         {
-            var sut = new LinkedList<int>();
-
-            sut.AddFirst(66);
-            sut.AddLast(42);
             sut.AddLast(47);
 
             Assert.That(sut.Last.Value, Is.EqualTo(47));
@@ -33,10 +27,9 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldRemoveFirst()
         {
-            var sut = new LinkedList<int>
-            {
-                3, 2, 1
-            };
+            sut.Add(1);
+            sut.Add(2);
+            sut.Add(3);
 
             sut.RemoveFirst();
 
@@ -46,10 +39,9 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldRemoveLast()
         {
-            var sut = new LinkedList<int>
-            {
-                3, 2, 1
-            };
+            sut.Add(1);
+            sut.Add(2);
+            sut.Add(3);
 
             sut.RemoveLast();
 
@@ -59,21 +51,17 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldGetCount()
         {
-            var sut = new LinkedList<int>
-            {
-                3, 2, 1
-            };
+            sut.Add(1);
+            sut.Add(2);
 
-            Assert.That(sut.Count, Is.EqualTo(3));
+            Assert.That(sut.Count, Is.EqualTo(2));
         }
 
         [Test]
         public void ShouldClear()
         {
-            var sut = new LinkedList<int>
-            {
-                3, 2, 1
-            };
+            sut.Add(1);
+            sut.Add(2);
 
             sut.Clear();
 
@@ -84,8 +72,6 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldNotBeEmpty()
         {
-            var sut = new LinkedList<int>();
-
             sut.AddFirst(66);
 
             Assert.That(sut.IsEmpty, Is.False);
@@ -95,10 +81,20 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldBeEmpty()
         {
-            var sut = new LinkedList<int>();
-
             Assert.That(sut.IsEmpty, Is.True);
             Assert.That(sut.Count, Is.EqualTo(0));
+        }
+
+        [SetUp]
+        public void BeforeEachTest()
+        {
+            sut = new LinkedList<int>();
+        }
+
+        [TearDown]
+        public void AfterEachTest()
+        {
+            sut = null;
         }
     }
 }
