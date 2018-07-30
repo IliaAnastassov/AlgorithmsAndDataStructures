@@ -8,6 +8,18 @@ namespace LinkedList.Tests
     {
         private LinkedList<int> sut;
 
+        [SetUp]
+        public void BeforeEachTest()
+        {
+            sut = new LinkedList<int>();
+        }
+
+        [TearDown]
+        public void AfterEachTest()
+        {
+            // TODO
+        }
+
         [Test]
         public void ShouldAddFirst()
         {
@@ -85,18 +97,6 @@ namespace LinkedList.Tests
 
             Assert.That(sut.IsEmpty, Is.True);
             Assert.That(sut.Count, Is.EqualTo(0));
-        }
-
-        [SetUp]
-        public void BeforeEachTest()
-        {
-            sut = new LinkedList<int>();
-        }
-
-        [TearDown]
-        public void AfterEachTest()
-        {
-            sut = null;
         }
     }
 }
