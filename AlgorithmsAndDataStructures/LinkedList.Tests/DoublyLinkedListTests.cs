@@ -93,8 +93,6 @@ namespace LinkedList.Tests
         [Test]
         public void ShouldBeEmpty()
         {
-            var sut = new LinkedList<int>();
-
             Assert.That(sut.IsEmpty, Is.True);
             Assert.That(sut.Count, Is.EqualTo(0));
         }
