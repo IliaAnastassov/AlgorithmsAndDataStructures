@@ -14,12 +14,6 @@ namespace LinkedList.Tests
             sut = new LinkedList<int>();
         }
 
-        [TearDown]
-        public void AfterEachTest()
-        {
-            // TODO
-        }
-
         [Test]
         public void ShouldAddFirst()
         {
