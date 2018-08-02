@@ -33,10 +33,10 @@ namespace Stack.List
         /// <summary>
         /// Adds the item to the top of the stack.
         /// </summary>
-        /// <param name="value">The item to add.</param>
-        public void Push(T value)
+        /// <param name="item">The item to add.</param>
+        public void Push(T item)
         {
-            _list.AddFirst(value);
+            _list.AddFirst(item);
         }
 
         /// <summary>
