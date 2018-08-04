@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
-using Stack.List;
+using Stack.Array;
 using System;
 
 namespace Stack.Tests
 {
     [TestFixture]
-    public class StackListTests
+    public class StackArrayTests
     {
         private Stack<int> sut;
 
@@ -50,6 +50,30 @@ namespace Stack.Tests
 
             Assert.That(sut.Count, Is.EqualTo(0));
             Assert.Throws<InvalidOperationException>(() => sut.Pop(), "The stack is empty.");
+        }
+
+        [Test]
+        public void ShouldGetCount()
+        {
+            sut.Push(1);
+            sut.Push(2);
+            sut.Push(3);
+
+            Assert.That(sut.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldBeEmpty()
+        {
+            Assert.That(sut.IsEmpty, Is.True);
+        }
+
+        [Test]
+        public void ShouldNotBeEmpty()
+        {
+            sut.Push(1);
+
+            Assert.That(sut.IsEmpty, Is.False);
         }
 
         [Test]
