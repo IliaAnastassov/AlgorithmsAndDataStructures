@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stack.Array
 {
-    class Stack<T> : IEnumerable<T>
+    public class Stack<T> : IEnumerable<T>
     {
         private T[] _items = new T[0];
         private int _size;

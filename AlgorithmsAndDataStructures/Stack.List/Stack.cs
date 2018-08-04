@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Stack.List
 {
-    class Stack<T> : IEnumerable<T>
+    public class Stack<T> : IEnumerable<T>
     {
         private LinkedList<T> _list = new LinkedList<T>();
 
