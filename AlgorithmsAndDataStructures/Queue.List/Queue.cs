@@ -7,7 +7,7 @@ namespace Queue.List
     /// <summary>
     /// A First In First Out collection
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of data stored in the queue</typeparam>
     public class Queue<T> : IEnumerable<T>
     {
         private LinkedList<T> _items = new LinkedList<T>();
