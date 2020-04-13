@@ -7,18 +7,11 @@ namespace Stack.Array
     public class Stack<T> : IEnumerable<T>
     {
         private T[] _items = new T[0];
-        private int _size;
 
         /// <summary>
         /// Gets the number of items currently in the stack.
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return _size;
-            }
-        }
+        public int Count { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the stack is empty.
@@ -27,7 +20,7 @@ namespace Stack.Array
         {
             get
             {
-                return _size == 0;
+                return Count == 0;
             }
         }
 
@@ -37,17 +30,17 @@ namespace Stack.Array
         /// <param name="item">The item to add.</param>
         public void Push(T item)
         {
-            if (_size == _items.Length)
+            if (Count == _items.Length)
             {
-                var newLenght = _size == 0 ? 4 : _size * 2;
+                var newLenght = Count == 0 ? 4 : Count * 2;
 
                 var temp = new T[newLenght];
                 _items.CopyTo(temp, 0);
                 _items = temp;
             }
 
-            _items[_size] = item;
-            _size++;
+            _items[Count] = item;
+            Count++;
         }
 
         /// <summary>
@@ -56,13 +49,13 @@ namespace Stack.Array
         /// <returns>The top item from the stack.</returns>
         public T Pop()
         {
-            if (_size == 0)
+            if (Count == 0)
             {
                 throw new InvalidOperationException("The stack is empty.");
             }
 
-            _size--;
-            return _items[_size]; ;
+            Count--;
+            return _items[Count]; ;
         }
 
         /// <summary>
@@ -71,12 +64,12 @@ namespace Stack.Array
         /// <returns>The top item from the stack.</returns>
         public T Peek()
         {
-            if (_size == 0)
+            if (Count == 0)
             {
                 throw new InvalidOperationException("The stack is empty.");
             }
 
-            return _items[_size - 1];
+            return _items[Count - 1];
         }
 
         /// <summary>
@@ -85,7 +78,7 @@ namespace Stack.Array
         public void Clear()
         {
             _items = new T[0];
-            _size = 0;
+            Count = 0;
         }
 
         /// <summary>
@@ -94,7 +87,7 @@ namespace Stack.Array
         /// <returns>An enumerator that can be used to iterate through the stack.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = _size - 1; i >= 0; i--)
+            for (int i = Count - 1; i >= 0; i--)
             {
                 yield return _items[i];
             }
