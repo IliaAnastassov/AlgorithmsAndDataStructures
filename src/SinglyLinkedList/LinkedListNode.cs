@@ -9,11 +9,8 @@
         /// <summary>
         /// Constructs a new node with the specified value.
         /// </summary>
-        /// <param name="value"></param>
-        public LinkedListNode(T value)
-        {
-            Value = value;
-        }
+        /// <param name="value">The value of the linked list node.</param>
+        public LinkedListNode(T value) => Value = value;
 
         /// <summary>
         /// The node value.
