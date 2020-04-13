@@ -16,13 +16,7 @@ namespace Stack.Array
         /// <summary>
         /// Gets a value indicating whether the stack is empty.
         /// </summary>
-        public bool IsEmpty
-        {
-            get
-            {
-                return Count == 0;
-            }
-        }
+        public bool IsEmpty => Count == 0;
 
         /// <summary>
         /// Adds the item to the top of the stack.

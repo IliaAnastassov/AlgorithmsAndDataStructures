@@ -3,7 +3,7 @@
     /// <summary>
     /// A node in the linked list.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the value of the linked list node.</typeparam>
     public class LinkedListNode<T>
     {
         /// <summary>

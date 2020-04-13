@@ -6,29 +6,17 @@ namespace Stack.List
 {
     public class Stack<T> : IEnumerable<T>
     {
-        private LinkedList<T> _list = new LinkedList<T>();
+        private readonly LinkedList<T> _list = new LinkedList<T>();
 
         /// <summary>
         /// Gets the number of items currently in the stack.
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return _list.Count;
-            }
-        }
+        public int Count => _list.Count;
 
         /// <summary>
         /// Gets a value indicating whether the stack is empty.
         /// </summary>
-        public bool IsEmpty
-        {
-            get
-            {
-                return _list.Count == 0;
-            }
-        }
+        public bool IsEmpty => _list.Count == 0;
 
         /// <summary>
         /// Adds the item to the top of the stack.
