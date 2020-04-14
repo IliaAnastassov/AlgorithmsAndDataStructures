@@ -170,7 +170,7 @@ namespace SinglyLinkedList
         }
 
         /// <summary>
-        /// Copies the elements of the linked list to an System.Array, starting at a particular System.Array index.
+        /// Copies the elements of the linked list to a System.Array, starting at a particular System.Array index.
         /// </summary>
         /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied
         /// from the linked list. The System.Array must have zero-based indexing.</param>
@@ -180,7 +180,9 @@ namespace SinglyLinkedList
             var current = First;
             while (current != null)
             {
-                array[arrayIndex++] = current.Value;
+                array[arrayIndex] = current.Value;
+                arrayIndex++;
+
                 current = current.Next;
             }
         }
