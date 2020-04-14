@@ -155,7 +155,7 @@ namespace SinglyLinkedList
         /// <returns>true if item is found in the linked list otherwise, false.</returns>
         public bool Contains(T item)
         {
-            LinkedListNode<T> current = First;
+            var current = First;
             while (current != null)
             {
                 if (current.Value.Equals(item))

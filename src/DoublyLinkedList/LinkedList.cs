@@ -6,7 +6,7 @@ namespace DoublyLinkedList
     /// <summary>
     /// A linked list collection.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the values of the linked list nodes.</typeparam>
     public class LinkedList<T> : ICollection<T>
     {
         /// <summary>
@@ -27,24 +27,12 @@ namespace DoublyLinkedList
         /// <summary>
         /// Gets a value indicating whether the linked list is empty.
         /// </summary>
-        public bool IsEmpty
-        {
-            get
-            {
-                return Count == 0;
-            }
-        }
+        public bool IsEmpty => Count == 0;
 
         /// <summary>
         /// Gets a value indicating whether the linked list is read-only.
         /// </summary>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsReadOnly => false;
 
         /// <summary>
         /// Adds the specified value to the start of the linked list.
@@ -170,7 +158,7 @@ namespace DoublyLinkedList
         /// <returns>true if item is found in the linked list otherwise, false.</returns>
         public bool Contains(T item)
         {
-            LinkedListNode<T> current = First;
+            var current = First;
             while (current != null)
             {
                 if (current.Value.Equals(item))
@@ -195,7 +183,9 @@ namespace DoublyLinkedList
             var current = First;
             while (current != null)
             {
-                array[arrayIndex++] = current.Value;
+                array[arrayIndex] = current.Value;
+                arrayIndex++;
+
                 current = current.Next;
             }
         }
