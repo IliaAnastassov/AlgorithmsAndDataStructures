@@ -5,26 +5,19 @@ using System.Collections.Generic;
 namespace Queue.Array
 {
     /// <summary>
-    /// A First In First Out collection
+    /// A First In First Out collection.
     /// </summary>
-    /// <typeparam name="T">The type of data stored in the queue</typeparam>
+    /// <typeparam name="T">The type of data stored in the queue.</typeparam>
     public class Queue<T> : IEnumerable<T>
     {
         private T[] _items = new T[0];
-        private int _size = 0;
         private int _first = 0;
         private int _last = -1;
 
         /// <summary>
         /// Gets the number of items currently in the queue.
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return _size;
-            }
-        }
+        public int Count { get; private set; } = 0;
 
         /// <summary>
         /// Adds the item to the back of the queue.
@@ -32,12 +25,12 @@ namespace Queue.Array
         /// <param name="item">The item to add.</param>
         public void Enqueue(T item)
         {
-            if (_size == _items.Length)
+            if (Count == _items.Length)
             {
-                var newLenght = _size == 0 ? 4 : _size * 2;
+                var newLenght = Count == 0 ? 4 : Count * 2;
                 var newArray = new T[newLenght];
 
-                if (_size > 0)
+                if (Count > 0)
                 {
                     var targetIndex = 0;
 
@@ -86,7 +79,7 @@ namespace Queue.Array
             }
 
             _items[_last] = item;
-            _size++;
+            Count++;
         }
 
         /// <summary>
@@ -95,7 +88,7 @@ namespace Queue.Array
         /// <returns>The front item from the queue.</returns>
         public T Dequeue()
         {
-            if (_size == 0)
+            if (Count == 0)
             {
                 throw new InvalidOperationException("The queue is empty.");
             }
@@ -111,7 +104,7 @@ namespace Queue.Array
                 _first++;
             }
 
-            _size--;
+            Count--;
 
             return item;
         }
@@ -122,7 +115,7 @@ namespace Queue.Array
         /// <returns>The front item from the queue.</returns>
         public T Peek()
         {
-            if (_size == 0)
+            if (Count == 0)
             {
                 throw new InvalidOperationException("The queue is empty.");
             }
@@ -135,7 +128,7 @@ namespace Queue.Array
         /// </summary>
         public void Clear()
         {
-            _size = 0;
+            Count = 0;
             _first = 0;
             _last = -1;
         }
@@ -146,7 +139,7 @@ namespace Queue.Array
         /// <returns>An enumerator that can be used to iterate through the queue.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            if (_size > 0)
+            if (Count > 0)
             {
                 if (_last < _first)
                 {
