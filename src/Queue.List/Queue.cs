@@ -10,7 +10,7 @@ namespace Queue.List
     /// <typeparam name="T">The type of data stored in the queue</typeparam>
     public class Queue<T> : IEnumerable<T>
     {
-        private LinkedList<T> _items = new LinkedList<T>();
+        private readonly LinkedList<T> _items = new LinkedList<T>();
 
         /// <summary>
         /// Gets the number of items currently in the queue.

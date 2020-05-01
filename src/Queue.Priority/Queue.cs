@@ -11,7 +11,7 @@ namespace Queue.Priority
     public class Queue<T> : IEnumerable<T>
         where T : IComparable<T>
     {
-        private LinkedList<T> _items = new LinkedList<T>();
+        private readonly LinkedList<T> _items = new LinkedList<T>();
 
         /// <summary>
         /// Gets the number of items currently in the queue.
