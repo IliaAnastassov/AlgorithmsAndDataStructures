@@ -8,15 +8,14 @@ namespace List
     {
         private const int INITIAL_CAPACITY = 4;
         private T[] _items;
-        private int _count;
 
         public List()
         {
             _items = new T[INITIAL_CAPACITY];
-            _count = 0;
+            Count = 0;
         }
 
-        public int Count => _count;
+        public int Count { get; private set; }
 
         public bool IsReadOnly => false;
 
@@ -24,14 +23,14 @@ namespace List
         {
             GrowIfFullArray();
 
-            _items[_count] = item;
-            _count++;
+            _items[Count] = item;
+            Count++;
         }
 
         public void Clear()
         {
             _items = new T[INITIAL_CAPACITY];
-            _count = 0;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -58,10 +57,10 @@ namespace List
             VerifyIndex(index);
             GrowIfFullArray();
 
-            Array.Copy(_items, index, _items, index + 1, _count - index);
+            Array.Copy(_items, index, _items, index + 1, Count - index);
 
             _items[index] = item;
-            _count++;
+            Count++;
         }
 
         public bool Remove(T item)
@@ -81,9 +80,9 @@ namespace List
         {
             VerifyIndex(index);
 
-            Array.Copy(_items, index + 1, _items, index, _count - index - 1);
-            _items[_count - 1] = default;
-            _count--;
+            Array.Copy(_items, index + 1, _items, index, Count - index - 1);
+            _items[Count - 1] = default;
+            Count--;
         }
 
         public T this[int index]
@@ -115,17 +114,17 @@ namespace List
 
         private void GrowIfFullArray()
         {
-            if (_count == _items.Length)
+            if (Count == _items.Length)
             {
                 var extended = new T[_items.Length * 2];
-                Array.Copy(_items, extended, _count);
+                Array.Copy(_items, extended, Count);
                 _items = extended;
             }
         }
 
         private void VerifyIndex(int index)
         {
-            if (index >= _count || index < 0)
+            if (index >= Count || index < 0)
             {
                 throw new IndexOutOfRangeException();
             }

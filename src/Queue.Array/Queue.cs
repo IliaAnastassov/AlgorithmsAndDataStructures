@@ -4,25 +4,14 @@ using System.Collections.Generic;
 
 namespace Queue.Array
 {
-    /// <summary>
-    /// A First In First Out collection.
-    /// </summary>
-    /// <typeparam name="T">The type of data stored in the queue.</typeparam>
     public class Queue<T> : IEnumerable<T>
     {
         private T[] _items = new T[0];
         private int _first = 0;
         private int _last = -1;
 
-        /// <summary>
-        /// Gets the number of items currently in the queue.
-        /// </summary>
         public int Count { get; private set; } = 0;
 
-        /// <summary>
-        /// Adds the item to the back of the queue.
-        /// </summary>
-        /// <param name="item">The item to add.</param>
         public void Enqueue(T item)
         {
             if (Count == _items.Length)
@@ -82,10 +71,6 @@ namespace Queue.Array
             Count++;
         }
 
-        /// <summary>
-        /// Removes and returns the front item from the queue.
-        /// </summary>
-        /// <returns>The front item from the queue.</returns>
         public T Dequeue()
         {
             if (Count == 0)
@@ -109,10 +94,6 @@ namespace Queue.Array
             return item;
         }
 
-        /// <summary>
-        /// Returns the front item from the queue without removing it.
-        /// </summary>
-        /// <returns>The front item from the queue.</returns>
         public T Peek()
         {
             if (Count == 0)
@@ -123,9 +104,6 @@ namespace Queue.Array
             return _items[_first];
         }
 
-        /// <summary>
-        /// Removes all items from the queue.
-        /// </summary>
         public void Clear()
         {
             Count = 0;
@@ -133,10 +111,6 @@ namespace Queue.Array
             _last = -1;
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the queue.
-        /// </summary>
-        /// <returns>An enumerator that can be used to iterate through the queue.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             if (Count > 0)
@@ -163,10 +137,6 @@ namespace Queue.Array
             }
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the queue.
-        /// </summary>
-        /// <returns>An enumerator that can be used to iterate through the queue.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
