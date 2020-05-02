@@ -3,50 +3,23 @@ using System.Collections.Generic;
 
 namespace SinglyLinkedList
 {
-    /// <summary>
-    /// A linked list collection.
-    /// </summary>
-    /// <typeparam name="T">The type of the values of the linked list nodes.</typeparam>
     public class LinkedList<T> : ICollection<T>
     {
-        /// <summary>
-        /// The first node in the linked list or null if empty.
-        /// </summary>
         public LinkedListNode<T> First { get; private set; }
 
-        /// <summary>
-        /// The last node in the linked list or null if empty.
-        /// </summary>
         public LinkedListNode<T> Last { get; private set; }
 
-        /// <summary>
-        /// The number of items currently in the linked list.
-        /// </summary>
         public int Count { get; private set; }
 
-        /// <summary>
-        /// Gets a value indicating whether the linked list is empty.
-        /// </summary>
         public bool IsEmpty => Count == 0;
 
-        /// <summary>
-        /// Gets a value indicating whether the linked list is read-only.
-        /// </summary>
         public bool IsReadOnly => false;
 
-        /// <summary>
-        /// Adds the specified value to the start of the linked list.
-        /// </summary>
-        /// <param name="value">The value to add.</param>
         public void AddFirst(T value)
         {
             AddFirst(new LinkedListNode<T>(value));
         }
 
-        /// <summary>
-        /// Adds the node to the start of the linked list.
-        /// </summary>
-        /// <param name="node">The node to add.</param>
         public void AddFirst(LinkedListNode<T> node)
         {
             var temp = First;
@@ -61,19 +34,11 @@ namespace SinglyLinkedList
             Count++;
         }
 
-        /// <summary>
-        /// Adds the specified value to the end of the linked list.
-        /// </summary>
-        /// <param name="value">The value to add.</param>
         public void AddLast(T value)
         {
             AddLast(new LinkedListNode<T>(value));
         }
 
-        /// <summary>
-        /// Adds the node to the end of the linked list.
-        /// </summary>
-        /// <param name="node">The node to add.</param>
         public void AddLast(LinkedListNode<T> node)
         {
             if (node.Next != null)
@@ -94,9 +59,6 @@ namespace SinglyLinkedList
             Count++;
         }
 
-        /// <summary>
-        /// Removes the first node of the linked list.
-        /// </summary>
         public void RemoveFirst()
         {
             if (!IsEmpty)
@@ -111,9 +73,6 @@ namespace SinglyLinkedList
             }
         }
 
-        /// <summary>
-        /// Removes the last node in the linked list.
-        /// </summary>
         public void RemoveLast()
         {
             if (!IsEmpty)
@@ -139,20 +98,11 @@ namespace SinglyLinkedList
             }
         }
 
-        /// <summary>
-        /// Adds an item to the linked list.
-        /// </summary>
-        /// <param name="item">The object to add to the linked list.</param>
         public void Add(T item)
         {
             AddFirst(item);
         }
 
-        /// <summary>
-        /// Determines whether the linked list contains a specific value.
-        /// </summary>
-        /// <param name="item">The object to locate in the linked list</param>
-        /// <returns>true if item is found in the linked list otherwise, false.</returns>
         public bool Contains(T item)
         {
             var current = First;
@@ -169,12 +119,6 @@ namespace SinglyLinkedList
             return false;
         }
 
-        /// <summary>
-        /// Copies the elements of the linked list to a System.Array, starting at a particular System.Array index.
-        /// </summary>
-        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied
-        /// from the linked list. The System.Array must have zero-based indexing.</param>
-        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             var current = First;
@@ -187,12 +131,6 @@ namespace SinglyLinkedList
             }
         }
 
-        /// <summary>
-        /// Removes the first occurrence of a specific object from the linked list.
-        /// </summary>
-        /// <param name="item">The object to remove from the linked list.</param>
-        /// <returns>true if item was successfully removed from the linked list; otherwise, false.
-        /// This method also returns false if item is not found in the original linked list.</returns>
         public bool Remove(T item)
         {
             LinkedListNode<T> previous = null;
@@ -228,10 +166,6 @@ namespace SinglyLinkedList
             return false;
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the linked list.
-        /// </summary>
-        /// <returns>An enumerator that can be used to iterate through the linked list.</returns>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             var current = First;
@@ -242,18 +176,11 @@ namespace SinglyLinkedList
             }
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the linked list.
-        /// </summary>
-        /// <returns>An enumerator that can be used to iterate through the linked list.</returns>
         public IEnumerator GetEnumerator()
         {
             return ((IEnumerable<T>)this).GetEnumerator();
         }
 
-        /// <summary>
-        /// Removes all items from the linked list.
-        /// </summary>
         public void Clear()
         {
             First = null;

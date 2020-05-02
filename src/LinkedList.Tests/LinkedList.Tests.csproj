@@ -68,9 +68,9 @@
       <Project>{03c98194-7cf3-4065-af26-59ba22574869}</Project>
       <Name>DoublyLinkedList</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SinglyLinkedList\SinglyLinkedList.csproj">
+    <ProjectReference Include="..\SinglyLinkedList\SinglyLinkedList.V1.csproj">
       <Project>{dd152f36-e75a-4a9a-8a9f-f61b4c8abb3d}</Project>
-      <Name>SinglyLinkedList</Name>
+      <Name>SinglyLinkedList.V1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

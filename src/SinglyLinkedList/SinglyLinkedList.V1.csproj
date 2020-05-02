@@ -7,8 +7,8 @@
     <ProjectGuid>{DD152F36-E75A-4A9A-8A9F-F61B4C8ABB3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LinkedList</RootNamespace>
-    <AssemblyName>LinkedList</AssemblyName>
+    <RootNamespace>SinglyLinkedList.V1</RootNamespace>
+    <AssemblyName>SinglyLinkedList.V1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
