@@ -24,7 +24,7 @@ namespace DataStructures.Stack.Static
 
         public int Count => _size;
 
-        public bool IsEmpty => Count == 0;
+        public bool IsEmpty => _size == 0;
 
         public void Push(T item)
         {
