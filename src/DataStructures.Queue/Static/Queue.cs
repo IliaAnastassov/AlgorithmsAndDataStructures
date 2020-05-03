@@ -22,15 +22,15 @@ namespace DataStructures.Queue.Static
 
         public int Count => _size;
 
-
         public void Enqueue(T item)
         {
             if (_size == _items.Length)
             {
-                ExtendCapacityMs();
+                ExtendCapacity();
             }
 
             _items[_tail] = item;
+            _items[_tail] = default;
             _tail = (_tail + 1) % _items.Length; // Set the tail to next index or 0, if tail at the end of the array
             _size++;
         }
@@ -40,16 +40,8 @@ namespace DataStructures.Queue.Static
             EnsureNotEmpty();
 
             var item = _items[_head];
-
-            if (_head == _items.Length - 1)
-            {
-                _head = 0;
-            }
-            else
-            {
-                _head++;
-            }
-
+            _items[_head] = default;
+            _head = (_head + 1) % _items.Length; // Set the head to next index or 0, if head at the end of the array
             _size--;
 
             return item;
@@ -100,7 +92,7 @@ namespace DataStructures.Queue.Static
             return GetEnumerator();
         }
 
-        private void ExtendCapacityMs()
+        private void ExtendCapacity()
         {
             var capacity = _items.Length * 2;
             var extended = new T[capacity];
@@ -112,13 +104,13 @@ namespace DataStructures.Queue.Static
             else
             {
                 // Since Queue is circular, starting with array:
-                //    T H
+                //     T/H
                 // [2|4|1|7]
                 // Resulting array:
                 //  H     T
                 // [1|7|2|4| | | | ]
                 Array.Copy(_items, _head, extended, 0, _items.Length - _head);
-                Array.Copy(_items, 0, extended, _items.Length - _head, _tail + 1);
+                Array.Copy(_items, 0, extended, _items.Length - _head, _tail);
             }
 
             _items = extended;
