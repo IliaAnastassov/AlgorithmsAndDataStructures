@@ -107,7 +107,7 @@ namespace DataStructures.Queue.Static
                 //     T/H
                 // [2|4|1|7]
                 // Resulting array:
-                //  H     T
+                //  H       T
                 // [1|7|2|4| | | | ]
                 Array.Copy(_items, _head, extended, 0, _items.Length - _head);
                 Array.Copy(_items, 0, extended, _items.Length - _head, _tail);
