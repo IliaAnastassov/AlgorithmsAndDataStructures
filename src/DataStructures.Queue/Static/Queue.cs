@@ -92,6 +92,14 @@ namespace DataStructures.Queue.Static
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// Since Queue is circular, starting with array:
+        ///     T/H
+        /// [2|4|1|7]
+        /// Results in array:
+        ///  H       T
+        /// [1|7|2|4| | | | ]
+        /// </summary>
         private void ExtendCapacity()
         {
             var capacity = _items.Length * 2;
@@ -103,12 +111,6 @@ namespace DataStructures.Queue.Static
             }
             else
             {
-                // Since Queue is circular, starting with array:
-                //     T/H
-                // [2|4|1|7]
-                // Resulting array:
-                //  H       T
-                // [1|7|2|4| | | | ]
                 Array.Copy(_items, _head, extended, 0, _items.Length - _head);
                 Array.Copy(_items, 0, extended, _items.Length - _head, _tail);
             }
