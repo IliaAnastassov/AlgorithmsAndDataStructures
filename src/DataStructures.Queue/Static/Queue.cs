@@ -122,7 +122,7 @@ namespace DataStructures.Queue.Static
 
         private void EnsureNotEmpty()
         {
-            if (Count == 0)
+            if (_size == 0)
             {
                 throw new InvalidOperationException("The queue is empty.");
             }
