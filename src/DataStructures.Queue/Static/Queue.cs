@@ -8,51 +8,49 @@ namespace DataStructures.Queue.Static
     {
         private const int DEFAULT_CAPACITY = 4;
         private T[] _items;
-        private int _first;
-        private int _last;
+        private int _head;
+        private int _tail;
+        private int _size;
 
         public Queue()
         {
             _items = new T[DEFAULT_CAPACITY];
-            _first = 0;
-            _last = -1;
+            _head = 0;
+            _tail = -1;
+            _size = 0;
         }
 
-        public int Count { get; private set; }
+        public int Count => _size;
+
 
         public void Enqueue(T item)
         {
-            ExtendIfFull();
-
-            if (_last == _items.Length - 1)
+            if (_size == _items.Length)
             {
-                _last = 0;
-            }
-            else
-            {
-                _last++;
+                ExtendCapacityMs();
             }
 
-            _items[_last] = item;
-            Count++;
+            _items[_tail] = item;
+            _tail = (_tail + 1) % _items.Length; // Set the tail to next index or 0, if tail at the end of the array
+            _size++;
         }
 
         public T Dequeue()
         {
             EnsureNotEmpty();
 
-            var item = _items[_first];
+            var item = _items[_head];
 
-            if (_first == _items.Length - 1)
+            if (_head == _items.Length - 1)
             {
-                _first = 0;
+                _head = 0;
             }
             else
             {
-                _first++;
+                _head++;
             }
 
-            Count--;
+            _size--;
 
             return item;
         }
@@ -60,36 +58,36 @@ namespace DataStructures.Queue.Static
         public T Peek()
         {
             EnsureNotEmpty();
-            return _items[_first];
+            return _items[_head];
         }
 
         public void Clear()
         {
             _items = new T[DEFAULT_CAPACITY];
-            Count = 0;
-            _first = 0;
-            _last = -1;
+            _head = 0;
+            _tail = -1;
+            _size = 0;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            if (Count > 0)
+            if (_size > 0)
             {
-                if (_last < _first)
+                if (_head < _tail)
                 {
-                    for (int i = _first; i < _items.Length; i++)
-                    {
-                        yield return _items[i];
-                    }
-
-                    for (int i = 0; i <= _last; i++)
+                    for (int i = _head; i <= _tail; i++)
                     {
                         yield return _items[i];
                     }
                 }
                 else
                 {
-                    for (int i = _first; i <= _last; i++)
+                    for (int i = _head; i < _items.Length; i++)
+                    {
+                        yield return _items[i];
+                    }
+
+                    for (int i = 0; i <= _tail; i++)
                     {
                         yield return _items[i];
                     }
@@ -102,41 +100,30 @@ namespace DataStructures.Queue.Static
             return GetEnumerator();
         }
 
-        private void ExtendIfFull()
+        private void ExtendCapacityMs()
         {
-            if (Count == _items.Length)
+            var capacity = _items.Length * 2;
+            var extended = new T[capacity];
+
+            if (_head < _tail)
             {
-                var extended = new T[Count * 2];
-                var targetIndex = 0;
-
-                if (_last < _first)
-                {
-                    for (int i = _first; i < _items.Length; i++)
-                    {
-                        extended[targetIndex] = _items[i];
-                        targetIndex++;
-                    }
-
-                    for (int i = 0; i < _first; i++)
-                    {
-                        extended[targetIndex] = _items[i];
-                        targetIndex++;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < _items.Length; i++)
-                    {
-                        extended[targetIndex] = _items[i];
-                        targetIndex++;
-                    }
-                }
-
-                _first = 0;
-                _last = targetIndex - 1;
-
-                _items = extended;
+                Array.Copy(_items, _head, extended, 0, _size);
             }
+            else
+            {
+                // Since Queue is circular, starting with array:
+                //    T H
+                // [2|4|1|7]
+                // Resulting array:
+                //  H     T
+                // [1|7|2|4| | | | ]
+                Array.Copy(_items, _head, extended, 0, _items.Length - _head);
+                Array.Copy(_items, 0, extended, _items.Length - _head, _tail + 1);
+            }
+
+            _items = extended;
+            _head = 0;
+            _tail = _size;
         }
 
         private void EnsureNotEmpty()
