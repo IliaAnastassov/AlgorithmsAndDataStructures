@@ -6,56 +6,57 @@ namespace DataStructures.LinkedList.Single.V1
     {
         private class LinkedListNode
         {
-            public T Element { get; set; }
+            public T Value { get; set; }
 
             public LinkedListNode Next { get; set; }
 
-            public LinkedListNode(T element, LinkedListNode previous)
+            public LinkedListNode(T value, LinkedListNode previous)
             {
-                Element = element;
+                Value = value;
                 previous.Next = this;
             }
 
-            public LinkedListNode(T element)
+            public LinkedListNode(T value)
             {
-                Element = element;
+                Value = value;
                 Next = null;
             }
         }
 
+        private int _size;
         private LinkedListNode _head;
         private LinkedListNode _tail;
 
-        public int Count { get; private set; }
+        public int Count => _size;
 
         public LinkedList()
         {
             _head = null;
             _tail = null;
-            Count = 0;
+            _size = 0;
         }
 
-        public void Add(T item)
+        public void Add(T value)
         {
-            if (Count == 0)
+            if (_size == 0)
             {
-                _head = new LinkedListNode(item);
+                _head = new LinkedListNode(value);
                 _tail = _head;
             }
             else
             {
-                var newNode = new LinkedListNode(item, _tail);
+                var newNode = new LinkedListNode(value, _tail);
                 _tail = newNode;
             }
 
-            Count++;
+            _size++;
         }
 
         public void RemoveAt(int index)
         {
             ValidateIndex(index);
 
-            // Find the element at the specified index
+            // Find the node at the specified index
             var currentIndex = 0;
             var currentNode = _head;
             LinkedListNode previousNode = null;
@@ -70,16 +71,16 @@ namespace DataStructures.LinkedList.Single.V1
             RemoveListNode(currentNode, previousNode);
         }
 
-        public int Remove(T item)
+        public int Remove(T value)
         {
-            // Find the element containing the searched item
+            // Find the node containing the searched value
             var currentIndex = 0;
             var currentNode = _head;
             LinkedListNode previousNode = null;
 
             while (currentNode != null)
             {
-                if (Equals(currentNode.Element, item))
+                if (Equals(currentNode.Value, value))
                 {
                     break;
                 }
@@ -91,25 +92,25 @@ namespace DataStructures.LinkedList.Single.V1
 
             if (currentNode != null)
             {
-                // Element is found in the list -> remove it
+                // Node is found in the list -> remove it
                 RemoveListNode(currentNode, previousNode);
                 return currentIndex;
             }
             else
             {
-                // Element is not found in the list -> return -1
+                // Node is not found in the list -> return -1
                 return -1;
             }
         }
 
-        public int IndexOf(T item)
+        public int IndexOf(T value)
         {
             var index = 0;
             var currentNode = _head;
 
             while (currentNode != null)
             {
-                if (Equals(currentNode.Element, item))
+                if (Equals(currentNode.Value, value))
                 {
                     return index;
                 }
@@ -121,9 +122,9 @@ namespace DataStructures.LinkedList.Single.V1
             return -1;
         }
 
-        public bool Contains(T item)
+        public bool Contains(T value)
         {
-            int index = IndexOf(item);
+            int index = IndexOf(value);
             return index != -1;
         }
 
@@ -134,22 +135,22 @@ namespace DataStructures.LinkedList.Single.V1
                 ValidateIndex(index);
 
                 var node = GetNodeAt(index);
-                return node.Element;
+                return node.Value;
             }
             set
             {
                 ValidateIndex(index);
 
                 var node = GetNodeAt(index);
-                node.Element = value;
+                node.Value = value;
             }
         }
 
         private void RemoveListNode(LinkedListNode node, LinkedListNode previous)
         {
-            Count--;
+            _size--;
 
-            if (Count == 0)
+            if (_size == 0)
             {
                 // The list becomes empty -> remove head and tail
                 _head = null;
@@ -175,7 +176,7 @@ namespace DataStructures.LinkedList.Single.V1
 
         private void ValidateIndex(int index)
         {
-            if (index >= Count || index < 0)
+            if (index >= _size || index < 0)
             {
                 throw new IndexOutOfRangeException($"Index is out of range: {index}.");
             }
@@ -192,5 +193,4 @@ namespace DataStructures.LinkedList.Single.V1
             return currentNode;
         }
     }
-
 }

@@ -15,9 +15,6 @@ namespace DataStructures.Queue.Static
         public Queue()
         {
             _items = new T[DEFAULT_CAPACITY];
-            _head = 0;
-            _tail = -1;
-            _size = 0;
         }
 
         public int Count => _size;
@@ -30,7 +27,6 @@ namespace DataStructures.Queue.Static
             }
 
             _items[_tail] = item;
-            _items[_tail] = default;
             _tail = (_tail + 1) % _items.Length; // Set the tail to next index or 0, if tail at the end of the array
             _size++;
         }
@@ -40,7 +36,7 @@ namespace DataStructures.Queue.Static
             EnsureNotEmpty();
 
             var item = _items[_head];
-            _items[_head] = default;
+            _items[_head] = default; // Faster memory deallocation
             _head = (_head + 1) % _items.Length; // Set the head to next index or 0, if head at the end of the array
             _size--;
 
@@ -102,8 +98,7 @@ namespace DataStructures.Queue.Static
         /// </summary>
         private void ExtendCapacity()
         {
-            var capacity = _items.Length * 2;
-            var extended = new T[capacity];
+            var extended = new T[_items.Length * 2];
 
             if (_head < _tail)
             {

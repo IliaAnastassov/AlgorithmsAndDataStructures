@@ -28,7 +28,10 @@ namespace DataStructures.Stack.Static
 
         public void Push(T item)
         {
-            ExtendIfFull();
+            if (_size == _items.Length)
+            {
+                ExtendCapacity();
+            }
 
             _items[_size] = item;
             _size++;
@@ -37,9 +40,10 @@ namespace DataStructures.Stack.Static
         public T Pop()
         {
             EnsureNotEmpty();
+            
             _size--;
             var item = _items[_size];
-            _items[_size] = default;
+            _items[_size] = default; // Faster memory deallocation
 
             return item;
         }
@@ -82,14 +86,11 @@ namespace DataStructures.Stack.Static
             return GetEnumerator();
         }
 
-        private void ExtendIfFull()
+        private void ExtendCapacity()
         {
-            if (_size == _items.Length)
-            {
-                var extended = new T[_size * 2];
-                _items.CopyTo(extended, 0);
-                _items = extended;
-            }
+            var extended = new T[_size * 2];
+            _items.CopyTo(extended, 0);
+            _items = extended;
         }
 
         private void EnsureNotEmpty()

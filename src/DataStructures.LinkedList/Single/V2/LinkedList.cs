@@ -188,5 +188,4 @@ namespace DataStructures.LinkedList.Single.V2
             Count = 0;
         }
     }
-
 }
