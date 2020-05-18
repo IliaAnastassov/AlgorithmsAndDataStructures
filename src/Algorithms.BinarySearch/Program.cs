@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Algorithms.BinarySearch
 {
@@ -7,14 +6,20 @@ namespace Algorithms.BinarySearch
     {
         public static void Main()
         {
-            var numbers = Enumerable.Range(1, 100).ToArray();
-            var result = BinarySearch(numbers, 7);
+            var numbers = new int[] { 1, 5, 5, 7, 12, 13, 17, 17, 21, 25 };
+            var result = BinarySearch(numbers, 17);
 
             Console.WriteLine(result);
         }
 
+        /// <summary>
+        /// Search for a number in a sorted array of integers.
+        /// </summary>
+        /// <returns>The index of the first occurence of the number if found, otherwise -1.</returns>
         public static int BinarySearch(int[] numbers, int number)
         {
+            var result = -1;
+
             var left = 0;
             var right = numbers.Length - 1;
 
@@ -24,10 +29,10 @@ namespace Algorithms.BinarySearch
 
                 if (number == numbers[middle])
                 {
-                    return middle;
+                    result = middle;
+                    right = middle - 1;
                 }
-
-                if (number < numbers[middle])
+                else if (number < numbers[middle])
                 {
                     right = middle - 1;
                 }
@@ -37,7 +42,7 @@ namespace Algorithms.BinarySearch
                 }
             }
 
-            return -1;
+            return result;
         }
     }
 }
