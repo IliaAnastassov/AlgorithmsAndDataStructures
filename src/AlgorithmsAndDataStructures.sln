@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Queue", "Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms.BinarySearch", "Algorithms.BinarySearch\Algorithms.BinarySearch.csproj", "{13F97E6E-8164-4D67-B863-B226CCC9CCF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.Tree", "DataStructures.Tree\DataStructures.Tree.csproj", "{7DC3943E-E4E6-471D-AF38-388CC50D6B96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Tree", "DataStructures.Tree\DataStructures.Tree.csproj", "{7DC3943E-E4E6-471D-AF38-388CC50D6B96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
