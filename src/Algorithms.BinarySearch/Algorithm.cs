@@ -41,21 +41,21 @@
 
             while (left <= right)
             {
-                var middle = left + (right - left) / 2;
+                var mid = left + (right - left) / 2;
 
-                if (value == numbers[middle])
+                if (value == numbers[mid])
                 {
-                    result = middle;
+                    result = mid;
 
                     if (findFirst.HasValue)
                     {
                         if (findFirst.Value)
                         {
-                            right = middle - 1;
+                            right = mid - 1;
                         }
                         else
                         {
-                            left = middle + 1;
+                            left = mid + 1;
                         }
                     }
                     else
@@ -63,13 +63,13 @@
                         break;
                     }
                 }
-                else if (value < numbers[middle])
+                else if (value < numbers[mid])
                 {
-                    right = middle - 1;
+                    right = mid - 1;
                 }
                 else
                 {
-                    left = middle + 1;
+                    left = mid + 1;
                 }
             }
 
