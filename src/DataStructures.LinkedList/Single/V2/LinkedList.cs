@@ -5,9 +5,9 @@ namespace DataStructures.LinkedList.Single.V2
 {
     public class LinkedList<T> : ICollection<T>
     {
-        public LinkedListNode<T> First { get; private set; }
+        public LinkedListNode<T> Head { get; private set; }
 
-        public LinkedListNode<T> Last { get; private set; }
+        public LinkedListNode<T> Tail { get; private set; }
 
         public int Count { get; private set; }
 
@@ -22,13 +22,13 @@ namespace DataStructures.LinkedList.Single.V2
 
         public void AddFirst(LinkedListNode<T> node)
         {
-            var temp = First;
-            First = node;
-            First.Next = temp;
+            var temp = Head;
+            Head = node;
+            Head.Next = temp;
 
             if (IsEmpty)
             {
-                Last = First;
+                Tail = Head;
             }
 
             Count++;
@@ -48,14 +48,14 @@ namespace DataStructures.LinkedList.Single.V2
 
             if (IsEmpty)
             {
-                First = node;
+                Head = node;
             }
             else
             {
-                Last.Next = node;
+                Tail.Next = node;
             }
 
-            Last = node;
+            Tail = node;
             Count++;
         }
 
@@ -63,12 +63,12 @@ namespace DataStructures.LinkedList.Single.V2
         {
             if (!IsEmpty)
             {
-                First = First.Next;
+                Head = Head.Next;
                 Count--;
 
                 if (Count == 0)
                 {
-                    Last = null;
+                    Tail = null;
                 }
             }
         }
@@ -79,19 +79,19 @@ namespace DataStructures.LinkedList.Single.V2
             {
                 if (Count == 1)
                 {
-                    First = null;
-                    Last = null;
+                    Head = null;
+                    Tail = null;
                 }
                 else
                 {
-                    var current = First;
-                    while (current.Next != Last)
+                    var current = Head;
+                    while (current.Next != Tail)
                     {
                         current = current.Next;
                     }
 
                     current.Next = null;
-                    Last = current;
+                    Tail = current;
                 }
 
                 Count--;
@@ -105,7 +105,7 @@ namespace DataStructures.LinkedList.Single.V2
 
         public bool Contains(T item)
         {
-            var current = First;
+            var current = Head;
             while (current != null)
             {
                 if (current.Value.Equals(item))
@@ -121,7 +121,7 @@ namespace DataStructures.LinkedList.Single.V2
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            var current = First;
+            var current = Head;
             while (current != null)
             {
                 array[arrayIndex] = current.Value;
@@ -134,7 +134,7 @@ namespace DataStructures.LinkedList.Single.V2
         public bool Remove(T item)
         {
             LinkedListNode<T> previous = null;
-            LinkedListNode<T> current = First;
+            LinkedListNode<T> current = Head;
 
             while (current != null)
             {
@@ -150,7 +150,7 @@ namespace DataStructures.LinkedList.Single.V2
 
                         if (current.Next == null)
                         {
-                            Last = previous;
+                            Tail = previous;
                         }
 
                         Count--;
@@ -168,7 +168,7 @@ namespace DataStructures.LinkedList.Single.V2
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            var current = First;
+            var current = Head;
             while (current.Next != null)
             {
                 yield return current.Value;
@@ -183,8 +183,8 @@ namespace DataStructures.LinkedList.Single.V2
 
         public void Clear()
         {
-            First = null;
-            Last = null;
+            Head = null;
+            Tail = null;
             Count = 0;
         }
     }
