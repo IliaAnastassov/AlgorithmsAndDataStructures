@@ -7,7 +7,7 @@ namespace DataStructures.Tree.Dynamic
     {
         private T _value;
         private bool _hasParent;
-        private List<TreeNode<T>> _children;
+        private readonly List<TreeNode<T>> _children;
 
         public TreeNode(T value)
         {
@@ -26,7 +26,7 @@ namespace DataStructures.Tree.Dynamic
             set => _value = value;
         }
 
-        public int ChildrenCount => _children.Count;
+        public IEnumerable<TreeNode<T>> Children => _children;
 
         public void AddChild(TreeNode<T> child)
         {
@@ -41,11 +41,6 @@ namespace DataStructures.Tree.Dynamic
 
             child._hasParent = true;
             _children.Add(child);
-        }
-
-        public TreeNode<T> GetChild(int index)
-        {
-            return _children[index];
         }
     }
 }

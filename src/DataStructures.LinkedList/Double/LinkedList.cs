@@ -5,9 +5,9 @@ namespace DataStructures.LinkedList.Double
 {
     public class LinkedList<T> : ICollection<T>
     {
-        public LinkedListNode<T> First { get; private set; }
+        public LinkedListNode<T> Head { get; private set; }
 
-        public LinkedListNode<T> Last { get; private set; }
+        public LinkedListNode<T> Tail { get; private set; }
 
         public int Count { get; private set; }
 
@@ -22,17 +22,17 @@ namespace DataStructures.LinkedList.Double
 
         public void AddFirst(LinkedListNode<T> node)
         {
-            var temp = First;
-            First = node;
-            First.Next = temp;
+            var temp = Head;
+            Head = node;
+            Head.Next = temp;
 
             if (IsEmpty)
             {
-                Last = First;
+                Tail = Head;
             }
             else
             {
-                temp.Previous = First;
+                temp.Previous = Head;
             }
 
             Count++;
@@ -52,15 +52,15 @@ namespace DataStructures.LinkedList.Double
 
             if (IsEmpty)
             {
-                First = node;
+                Head = node;
             }
             else
             {
-                Last.Next = node;
-                node.Previous = Last;
+                Tail.Next = node;
+                node.Previous = Tail;
             }
 
-            Last = node;
+            Tail = node;
             Count++;
         }
 
@@ -68,16 +68,16 @@ namespace DataStructures.LinkedList.Double
         {
             if (!IsEmpty)
             {
-                First = First.Next;
+                Head = Head.Next;
                 Count--;
 
                 if (IsEmpty)
                 {
-                    Last = null;
+                    Tail = null;
                 }
                 else
                 {
-                    First.Previous = null;
+                    Head.Previous = null;
                 }
             }
         }
@@ -88,13 +88,13 @@ namespace DataStructures.LinkedList.Double
             {
                 if (Count == 1)
                 {
-                    First = null;
-                    Last = null;
+                    Head = null;
+                    Tail = null;
                 }
                 else
                 {
-                    Last.Previous.Next = null;
-                    Last = Last.Previous;
+                    Tail.Previous.Next = null;
+                    Tail = Tail.Previous;
                 }
 
                 Count--;
@@ -108,7 +108,7 @@ namespace DataStructures.LinkedList.Double
 
         public bool Contains(T item)
         {
-            var current = First;
+            var current = Head;
             while (current != null)
             {
                 if (current.Value.Equals(item))
@@ -124,7 +124,7 @@ namespace DataStructures.LinkedList.Double
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            var current = First;
+            var current = Head;
             while (current != null)
             {
                 array[arrayIndex] = current.Value;
@@ -137,7 +137,7 @@ namespace DataStructures.LinkedList.Double
         public bool Remove(T item)
         {
             LinkedListNode<T> previous = null;
-            LinkedListNode<T> current = First;
+            LinkedListNode<T> current = Head;
 
             while (current != null)
             {
@@ -153,7 +153,7 @@ namespace DataStructures.LinkedList.Double
 
                         if (current.Next == null)
                         {
-                            Last = previous;
+                            Tail = previous;
                         }
                         else
                         {
@@ -175,7 +175,7 @@ namespace DataStructures.LinkedList.Double
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            var current = First;
+            var current = Head;
             while (current.Next != null)
             {
                 yield return current.Value;
@@ -190,8 +190,8 @@ namespace DataStructures.LinkedList.Double
 
         public void Clear()
         {
-            First = null;
-            Last = null;
+            Head = null;
+            Tail = null;
             Count = 0;
         }
     }
