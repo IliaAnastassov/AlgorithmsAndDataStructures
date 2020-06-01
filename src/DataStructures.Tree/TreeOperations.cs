@@ -39,7 +39,7 @@ namespace DataStructures.Tree
                 return node;
             }
 
-            TreeNode<T> result = null;
+            TreeNode<T> result;
             foreach (var child in node.Children)
             {
                 // search recursively for the value in each child of the node
@@ -47,11 +47,12 @@ namespace DataStructures.Tree
                 if (result != null)
                 {
                     // the value is found
-                    break;
+                    return result;
                 }
             }
 
-            return result;
+            // the value is not found
+            return null;
         }
 
         private static TreeNode<T> FindDFS<T>(TreeNode<T> node, T value)
@@ -70,7 +71,7 @@ namespace DataStructures.Tree
                 }
                 else if (next.Children.Any())
                 {
-                    // push all children of the top node in the stack
+                    // push all children of the next node in the stack
                     foreach (var child in next.Children)
                     {
                         stack.Push(child);

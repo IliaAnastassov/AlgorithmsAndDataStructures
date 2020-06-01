@@ -8,13 +8,7 @@ namespace DataStructures.Queue.Dynamic
     {
         private readonly LinkedList<T> _items = new LinkedList<T>();
 
-        public int Count
-        {
-            get
-            {
-                return _items.Count;
-            }
-        }
+        public int Count => _items.Count;
 
         public void Enqueue(T item)
         {
@@ -29,7 +23,6 @@ namespace DataStructures.Queue.Dynamic
             }
 
             var item = _items.First.Value;
-
             _items.RemoveFirst();
 
             return item;
